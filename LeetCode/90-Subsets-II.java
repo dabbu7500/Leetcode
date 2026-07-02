@@ -13,6 +13,8 @@ class Solution {
        
         
         ans.add(new ArrayList<>(list));
+         if(idx==nums.length)
+        return;
         for(int i=idx;i<nums.length;i++)
         {
 
