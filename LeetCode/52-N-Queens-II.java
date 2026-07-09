@@ -1,0 +1,61 @@
+class Solution {
+    static int c;
+    public int totalNQueens(int n) {
+
+        c=0;
+        char [][] board= new char[n][n];
+        queen(board,0,n);
+        return c;
+        
+    }
+        static void queen(char [][] board,int row,int tq)
+    {
+        if(tq==0)
+        {
+            c++;
+            return;
+        }
+
+        for(int col=0;col<board.length;col++ )
+        {
+            if(isItSafe(board,row,col))
+            {
+                board[row][col]='Q';
+                queen(board,row+1,tq-1);
+                board[row][col]='.';
+            }
+        }
+    }
+    static boolean isItSafe(char [][] board,int row,int col)
+    {
+        int r=row;
+        while(row>=0)
+        {
+            if(board[row][col]=='Q')
+            return false;
+            row--;
+            
+        }
+        row=r;
+        int c=col;
+        while(row>=0 && col>=0)
+        {
+            if(board[row][col]=='Q')
+            return false;
+            row--;
+            col--;
+            
+        }
+        row=r;
+        col=c;
+        while(row>=0 && col<board.length)
+        {
+            if(board[row][col]=='Q')
+            return false;
+            row--;
+            col++;
+            
+        }
+        return true;
+    }
+}
